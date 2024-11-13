@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import FormBuilder from './components/FormBuilder';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    document.body.className = darkMode ? 'dark-mode' : 'light-mode';
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1>Dynamic Form Builder</h1>
+      <button className="toggle-button" onClick={toggleDarkMode}>
+        <i className={darkMode ? 'fas fa-sun' : 'fas fa-moon'}></i>
+      </button>
+      <FormBuilder />
     </div>
   );
-}
+};
 
 export default App;
